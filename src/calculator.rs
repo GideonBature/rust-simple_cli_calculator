@@ -5,11 +5,11 @@ pub struct Calculator {
 }
 
 pub enum Op {
-    Add(String),
-    Subtract(String),
-    Multiply(String),
-    Divide(String),
-    Modulus(String),
+    Add,
+    Subtract,
+    Multiply,
+    Divide,
+    Modulus,
 }
 
 impl Calculator {

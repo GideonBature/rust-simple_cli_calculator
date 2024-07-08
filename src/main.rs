@@ -1,14 +1,22 @@
 mod cli;
+mod calculator;
 
 pub use cli::cli_readline::{readline_float, readline_string};
+pub use calculator::{Calculator, Op};
 
 fn main() {
     let num1: f32 = readline_float(String::from("Enter first number: "));
-    println!("{}", num1);
-    let operation: String = readline_string(String::from("Enter the operator(+, -, x, /, %): "));
-    println!("{}", operation);
+    let op: String = readline_string(String::from("Enter the operator(+, -, x, /, %): "));
     let num2: f32 = readline_float(String::from("Enter second number: "));
-    println!("{}", num2);
+
+    match op.as_str() {
+       "+"  => {
+            let addition = Calculator { operand1: num1, operand2: num2, op: Op::Add };
+            let result = addition.calc();
+            println!("{} + {} = {}", num1, num2, result);
+        }
+       _ => println!("Invalid input"),
+    }
 }
 /*
 fn readline_float(message: String) -> f32 {
