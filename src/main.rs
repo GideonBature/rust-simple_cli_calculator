@@ -2,7 +2,7 @@ mod cli;
 mod calculator;
 
 pub use cli::cli_readline::{readline_float, readline_string};
-pub use calculator::{Calculator, Op};
+pub use calculator::{Calculator, Op, addition, subtraction, multiplication, division, modulus};
 
 fn main() {
     let num1: f32 = readline_float(String::from("Enter first number: "));
@@ -10,11 +10,11 @@ fn main() {
     let num2: f32 = readline_float(String::from("Enter second number: "));
 
     match op.as_str() {
-       "+"  => {
-            let addition = Calculator { operand1: num1, operand2: num2, op: Op::Add };
-            let result = addition.calc();
-            println!("{} + {} = {}", num1, num2, result);
-        }
+       "+"  => addition(num1, num2, Op::Add),
+       "-" => subtraction(num1, num2, Op::Subtract),
+       "*" => multiplication(num1, num2, Op::Multiply),
+       "/" => division(num1, num2, Op::Divide),
+       "%" => modulus(num1, num2, Op::Modulus),
        _ => println!("Invalid input"),
     }
 }
